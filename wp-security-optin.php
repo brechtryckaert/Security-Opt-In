@@ -51,10 +51,11 @@ function wp_security_optin_do_page() {
 			<?php $options = get_option('wp_security_optin_settings'); ?>
 			<table class="form-table">
 				<tr valign="top"><th scope="row">XML-RPC is enabled</th>
-					<td><input name="wp_security_optin_settings[xmlrpcenabled]" type="checkbox" value="1" <?php checked('1', $options['xmlrpcenabled']); ?> /></td>
+					<td><input type="hidden" name="wp_security_optin_settings[xmlrpcenabled]" value="0" />
+					<input name="wp_security_optin_settings[xmlrpcenabled]" type="checkbox" value="1" <?php checked('1', $options['xmlrpcenabled']); ?> /></td>
 				</tr>
 				<th scope="row">Author Pages are enabled (currently unsupported)</th>
-					<td><input name="wp_security_optin_settings[authorpagesenabled]" type="checkbox" value="1" <?php checked('1', $options['authorpagesenabled']); ?> /></td>
+					<td><input type="hidden" name="wp_security_optin_settings[authorpagesenabled]" value="0" /><input name="wp_security_optin_settings[authorpagesenabled]" type="checkbox" value="1" <?php checked('1', $options['authorpagesenabled']); ?> /></td>
 				</tr>
 			</table>
 			<p class="submit">
