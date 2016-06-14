@@ -46,7 +46,7 @@ function wp_security_optin_do_page() {
 	<div class="wrap">
 	
 			<?php
-			if (version_compare(phpversion(), '7.0', '<')) {
+			if (version_compare(phpversion(), '5.6', '<')) {
     			// display warning if PHP version is lower then 5.6
     			?>
 				<h1>Warning</h1>
@@ -67,6 +67,10 @@ function wp_security_optin_do_page() {
 				<th scope="row">Author Pages are enabled (currently unsupported)</th>
 					<td><input type="hidden" name="wp_security_optin_settings[authorpagesenabled]" value="0" /><input name="wp_security_optin_settings[authorpagesenabled]" type="checkbox" value="1" <?php checked('1', $options['authorpagesenabled']); ?> /></td>
 				</tr>
+				<th scope="row">File editing is enabled (currently unsupported)</th>
+					<td><input type="hidden" name="wp_security_optin_settings[fileeditenabled]" value="0" /><input name="wp_security_optin_settings[fileeditenabled]" type="checkbox" value="1" <?php checked('1', $options['fileeditenabled']); ?> /></td>
+				</tr>
+
 			</table>
 			<p class="submit">
 			<input type="submit" class="button-primary" value="<?php _e('Save Changes') ?>" />
@@ -81,8 +85,11 @@ function wp_security_optin_validate($input) {
 	// Validate input of XML-RPC function being 0 or 1
 	$input['wp_security_optin_settings[xmlrpcenabled]'] = ( $input['xmlrpcenabled'] == 1 ? 1 : 0 );
 	
-	// Validate input of XML-RPC function being 0 or 1
+	// Validate input of Author pages function being 0 or 1
 	$input['wp_security_optin_settings[authorpagesenabled]'] = ( $input['authorpagesenabled'] == 1 ? 1 : 0 );
+	
+	// Validate input of File Edit function being 0 or 1
+	$input['wp_security_optin_settings[fileeditenabled]'] = ( $input['fileeditenabled'] == 1 ? 1 : 0 );
 	
 	return $input;
 }
