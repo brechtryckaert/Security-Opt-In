@@ -30,7 +30,7 @@ add_action('admin_menu', 'wp_security_optin_add_page');
 
 // Init plugin options to white list our options
 function wp_security_optin_init(){
-	register_setting( 'wp_security_optin_options', 'wp_security_optin_settings' );
+	register_setting( 'wp_security_optin_options', 'wp_security_optin_settings', 'wp_security_optin_validate' );
 }
 
 // Add menu page
@@ -79,10 +79,10 @@ function wp_security_optin_do_page() {
 // Sanitize and validate input. Accepts an array, return a sanitized array.
 function wp_security_optin_validate($input) {
 	// Validate input of XML-RPC function being 0 or 1
-	$input['xmlrpcenabled'] = ( $input['option1'] == 1 ? 1 : 0 );
+	$input['wp_security_optin_settings[xmlrpcenabled]'] = ( $input['xmlrpcenabled'] == 1 ? 1 : 0 );
 	
 	// Validate input of XML-RPC function being 0 or 1
-	$input['authorpagesenabled'] = ( $input['option1'] == 1 ? 1 : 0 );
+	$input['wp_security_optin_settings[authorpagesenabled]'] = ( $input['authorpagesenabled'] == 1 ? 1 : 0 );
 	
 	return $input;
 }
