@@ -30,7 +30,7 @@ add_action('admin_menu', 'wp_security_optin_add_page');
 
 // Init plugin options to white list our options
 function wp_security_optin_init(){
-	register_setting( 'wp_security_optin_options', 'wp_security_optin_settings', 'wp_security_optin_validate' );
+	register_setting( 'wp_security_optin_options', 'wp_security_optin_settings' );
 }
 
 // Add menu page
