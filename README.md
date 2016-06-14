@@ -5,6 +5,7 @@ A WordPress plugin to create opt-in functionalities to propose for core inclusio
 
 By turning on this plugin, following features of WordPress will be instantly deactivated:
 - the XML-RPC-protocol
+- File editing of Plugins, Themes and core files
 - Author Pages
 
 Both settings are on by default in a vanilla WordPress install but can be abused for hacking purposes. 
