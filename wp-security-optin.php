@@ -44,6 +44,16 @@ add_action('admin_init', 'wp_security_optin_init' );
 function wp_security_optin_do_page() {
 	?>
 	<div class="wrap">
+	
+			<?php
+			if (version_compare(phpversion(), '7.0', '<')) {
+    			// display warning if PHP version is lower then 5.6
+    			?>
+				<h1>Warning</h1>
+				<h3>Your PHP-version is outdated. <b style="color: #FF0000;">Please update your PHP-version to 5.6 (or higher)</b> to profit from a more secure PHP configuration.</h3>
+				<?php
+			}
+			?>
 		<h1>Security Opt-In</h1>
 		<p>This plugin allows you to control several security related settings from withing the WordPress Backend. By default, when WP Security Opt-In will be activated, these options are disabled for improved security. By default in WordPress though, these options are enabled, which may result in a security risk. You can't opt-in to these functionalities when and if you need them by changing the options below.</p>
 		<form method="post" action="options.php">
