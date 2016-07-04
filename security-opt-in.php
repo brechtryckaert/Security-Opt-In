@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       security-opt-in
  * Plugin URI:        http://www.brechtryckaert.com/plugins
- * Description:       This is a short description of what the plugin does. It's displayed in the WordPress admin area.
+ * Description:       This plugin makes several default functions an opt-in function to improve security.
  * Version:           1.0.0
  * Author:            Brecht Ryckaert
  * Author URI:        http://www.brechtryckaert.com
