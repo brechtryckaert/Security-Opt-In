@@ -30,7 +30,7 @@ class Security_Opt_In_Public {
 	 */
 	protected $disableAuthorPages;
 	
-	public function __construct($xmlrpc=true, $disableAuthorPages) {
+	public function __construct($xmlrpc, $disableAuthorPages) {
 		$this->xmlrpc = $xmlrpc;
 	}
 	
@@ -43,9 +43,7 @@ class Security_Opt_In_Public {
 
         if($this->xmlrpc){
 
-            add_filter('xmlrpc_enabled', function(){
-            	return false;
-            });
+            add_filter('xmlrpc_enabled', '__return_false');
 
         }
     }   
@@ -55,7 +53,7 @@ class Security_Opt_In_Public {
      *
      * @since    1.0.0
      */
-    public function Security_Opt_In_disableauthorpages() {
+    public function Security_Opt_In_disableAuthorPages() {
 
         if($this->disableAuthorPages && preg_match($_SERVER['REQUEST_URI'],'/^\/\?author=[0-9]+/')){
       	    wp_safe_redirect(get_bloginfo('url'),'301');
