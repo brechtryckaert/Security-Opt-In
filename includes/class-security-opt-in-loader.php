@@ -3,7 +3,7 @@
 /**
  * Register all actions and filters for the plugin
  *
- * @link       http://www.brechtryckaert.com
+ * @link       https://www.brechtryckaert.com
  * @since      1.0.0
  *
  * @package    Security_Opt_In

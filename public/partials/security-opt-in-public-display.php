@@ -5,7 +5,7 @@
  *
  * This file is used to markup the public-facing aspects of the plugin.
  *
- * @link       http://www.brechtryckaert.com
+ * @link       https://www.brechtryckaert.com
  * @since      1.0.0
  *
  * @package    Security_Opt_In

@@ -8,17 +8,17 @@
  * registers the activation and deactivation functions, and defines a function
  * that starts the plugin.
  *
- * @link              http://www.brechtryckaert.com
+ * @link              https://www.brechtryckaert.com
  * @since             1.0.0
  * @package           Security_Opt_In
  *
  * @wordpress-plugin
- * Plugin Name:       security-opt-in
- * Plugin URI:        http://www.brechtryckaert.com/plugins
- * Description:       This plugin makes several default functions an opt-in function to improve security.
+ * Plugin Name:       Security-Opt-In
+ * Plugin URI:        https://www.brechtryckaert.com/plugins
+ * Description:       Security-Opt-In disables a number of features (that are enabled in WordPress by default) to improve the security of your WordPress website. Since certain other plugins and themes need these functions, you also get a control panel where you can manually override settings.
  * Version:           1.0.0
  * Author:            Brecht Ryckaert
- * Author URI:        http://www.brechtryckaert.com
+ * Author URI:        https://www.brechtryckaert.com
  * License:           GPL-2.0+
  * License URI:       http://www.gnu.org/licenses/gpl-2.0.txt
  * Text Domain:       security-opt-in

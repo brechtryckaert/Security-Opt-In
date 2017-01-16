@@ -3,7 +3,7 @@
 /**
  * Fired during plugin deactivation
  *
- * @link       http://www.brechtryckaert.com
+ * @link       https://www.brechtryckaert.com
  * @since      1.0.0
  *
  * @package    Security_Opt_In

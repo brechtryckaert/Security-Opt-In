@@ -6,7 +6,7 @@
  * Loads and defines the internationalization files for this plugin
  * so that it is ready for translation.
  *
- * @link       http://www.brechtryckaert.com
+ * @link       https://www.brechtryckaert.com
  * @since      1.0.0
  *
  * @package    Security_Opt_In

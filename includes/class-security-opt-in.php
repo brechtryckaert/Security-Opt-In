@@ -6,7 +6,7 @@
  * A class definition that includes attributes and functions used across both the
  * public-facing side of the site and the admin area.
  *
- * @link       http://www.brechtryckaert.com
+ * @link       https://www.brechtryckaert.com
  * @since      1.0.0
  *
  * @package    Security_Opt_In
@@ -29,6 +29,8 @@
  */
 class Security_Opt_In {
 
+	const PLUGIN_NAME = 'Security_Opt_In';
+	const PLUGIN_VERSION = '1.0.0';
 	/**
 	 * The loader that's responsible for maintaining and registering all hooks that power
 	 * the plugin.
@@ -153,14 +155,14 @@ class Security_Opt_In {
 
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
-		
+		// Save/Update our plugin options
+		$this->loader->add_action('admin_init', $plugin_admin, 'options_update');
 		// Add menu item
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'add_plugin_admin_menu' );
-
 		// Add Settings link to the plugin
 		$plugin_basename = plugin_basename( plugin_dir_path( __DIR__ ) . $this->plugin_name . '.php' );
-		$this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links' );
-
+		$this->loader->add_filter( 'plugin_action_links_' . $plugin_basename, $plugin_admin, 'add_action_links');
+		
 	}
 
 	/**
@@ -218,5 +220,6 @@ class Security_Opt_In {
 	public function get_version() {
 		return $this->version;
 	}
-
+		
+	
 }
