@@ -26,36 +26,38 @@
  */
 
 // If this file is called directly, abort.
-if ( ! defined( 'WPINC' ) ) {
-	die;
+if (!defined('WPINC')) {
+    die;
 }
 
 /**
  * The code that runs during plugin activation.
  * This action is documented in includes/class-security-opt-in-activator.php
  */
-function activate_security_opt_in() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-security-opt-in-activator.php';
-	Security_Opt_In_Activator::activate();
+function activate_security_opt_in()
+{
+    require_once plugin_dir_path(__FILE__) . 'includes/class-security-opt-in-activator.php';
+    Security_Opt_In_Activator::activate();
 }
 
 /**
  * The code that runs during plugin deactivation.
  * This action is documented in includes/class-security-opt-in-deactivator.php
  */
-function deactivate_security_opt_in() {
-	require_once plugin_dir_path( __FILE__ ) . 'includes/class-security-opt-in-deactivator.php';
-	Security_Opt_In_Deactivator::deactivate();
+function deactivate_security_opt_in()
+{
+    require_once plugin_dir_path(__FILE__) . 'includes/class-security-opt-in-deactivator.php';
+    Security_Opt_In_Deactivator::deactivate();
 }
 
-register_activation_hook( __FILE__, 'activate_security_opt_in' );
-register_deactivation_hook( __FILE__, 'deactivate_security_opt_in' );
+register_activation_hook(__FILE__, 'activate_security_opt_in');
+register_deactivation_hook(__FILE__, 'deactivate_security_opt_in');
 
 /**
  * The core plugin class that is used to define internationalization,
  * admin-specific hooks, and public-facing site hooks.
  */
-require plugin_dir_path( __FILE__ ) . 'includes/class-security-opt-in.php';
+require plugin_dir_path(__FILE__) . 'includes/class-security-opt-in.php';
 
 /**
  * Begins execution of the plugin.
@@ -64,12 +66,13 @@ require plugin_dir_path( __FILE__ ) . 'includes/class-security-opt-in.php';
  * then kicking off the plugin from this point in the file does
  * not affect the page life cycle.
  *
- * @since    1.0.0
  */
-function run_security_opt_in() {
+function run_security_opt_in()
+{
 
-	$plugin = new Security_Opt_In();
-	$plugin->run();
+    $plugin = new Security_Opt_In();
+    $plugin->run();
 
 }
+
 run_security_opt_in();
