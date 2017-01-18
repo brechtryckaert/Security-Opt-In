@@ -20,149 +20,118 @@
  * @subpackage Security_Opt_In/admin
  * @author     Brecht Ryckaert <brecht@mediagraaf.be>
  */
-class Security_Opt_In_Admin {
+class Security_Opt_In_Admin
+{
+    /**
+     * Register the stylesheets for the admin area.
+     */
+    public function enqueue_styles()
+    {
 
-	/**
-	 * The ID of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $plugin_name    The ID of this plugin.
-	 */
-	private $plugin_name;
+        /**
+         * This function is provided for demonstration purposes only.
+         *
+         * An instance of this class should be passed to the run() function
+         * defined in Security_Opt_In_Loader as all of the hooks are defined
+         * in that particular class.
+         *
+         * The Security_Opt_In_Loader will then create the relationship
+         * between the defined hooks and the functions defined in this
+         * class.
+         */
 
-	/**
-	 * The version of this plugin.
-	 *
-	 * @since    1.0.0
-	 * @access   private
-	 * @var      string    $version    The current version of this plugin.
-	 */
-	private $version;
+        wp_enqueue_style(Security_Opt_In::PLUGIN_NAME, plugin_dir_url(__FILE__) . 'css/security-opt-in-admin.css',
+            array(), Security_Opt_In::PLUGIN_VERSION, 'all');
 
-	/**
-	 * Initialize the class and set its properties.
-	 *
-	 * @since    1.0.0
-	 * @param      string    $plugin_name       The name of this plugin.
-	 * @param      string    $version    The version of this plugin.
-	 */
-	public function __construct( $plugin_name, $version ) {
+    }
 
-		$this->plugin_name = $plugin_name;
-		$this->version = $version;
+    /**
+     * Register the JavaScript for the admin area.
+     */
+    public function enqueue_scripts()
+    {
 
-	}
+        /**
+         * This function is provided for demonstration purposes only.
+         *
+         * An instance of this class should be passed to the run() function
+         * defined in Security_Opt_In_Loader as all of the hooks are defined
+         * in that particular class.
+         *
+         * The Security_Opt_In_Loader will then create the relationship
+         * between the defined hooks and the functions defined in this
+         * class.
+         */
 
-	/**
-	 * Register the stylesheets for the admin area.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_styles() {
+        wp_enqueue_script(Security_Opt_In::PLUGIN_NAME, plugin_dir_url(__FILE__) . 'js/security-opt-in-admin.js',
+            array('jquery'), Security_Opt_In::PLUGIN_VERSION, false);
+    }
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Security_Opt_In_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Security_Opt_In_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+    /**
+     * Register the administration menu for this plugin into the WordPress Dashboard menu.
+     */
 
-		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/security-opt-in-admin.css', array(), $this->version, 'all' );
+    public function add_plugin_admin_menu()
+    {
 
-	}
+        /*
+         * Add a settings page for this plugin to the Settings menu.
+         *
+         * NOTE:  Alternative menu locations are available via WordPress administration menu functions.
+         *
+         *        Administration Menus: http://codex.wordpress.org/Administration_Menus
+         *
+         */
+        add_options_page('Security-Opt-In Settings', 'Security-Opt-In', 'manage_options', Security_Opt_In::PLUGIN_NAME,
+            array($this, 'display_plugin_setup_page')
+        );
+    }
 
-	/**
-	 * Register the JavaScript for the admin area.
-	 *
-	 * @since    1.0.0
-	 */
-	public function enqueue_scripts() {
+    /**
+     * Add settings action link to the plugins page.
+     */
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Security_Opt_In_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Security_Opt_In_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
+    public function add_action_links($links)
+    {
+        /*
+        *  Documentation : https://codex.wordpress.org/Plugin_API/Filter_Reference/plugin_action_links_(plugin_file_name)
+        */
+        $settings_link = array(
+            '<a href="' . admin_url('options-general.php?page=' . Security_Opt_In::PLUGIN_NAME) . '">' . __('Settings',
+                Security_Opt_In::PLUGIN_NAME) . '</a>',
+        );
+        return array_merge($settings_link, $links);
 
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/security-opt-in-admin.js', array( 'jquery' ), $this->version, false );
-		}
+    }
 
-		/**
- 		* Register the administration menu for this plugin into the WordPress Dashboard menu.
- 		*
- 		* @since    1.0.0
- 		*/
- 
-		public function add_plugin_admin_menu() {
+    /**
+     * Render the settings page for this plugin.
+     */
 
-    	/*
-     	* Add a settings page for this plugin to the Settings menu.
-     	*
-     	* NOTE:  Alternative menu locations are available via WordPress administration menu functions.
-     	*
-     	*        Administration Menus: http://codex.wordpress.org/Administration_Menus
-     	*
-     	*/
-    	add_options_page( 'Security-Opt-In Settings', 'Security-Opt-In', 'manage_options', $this->plugin_name, array($this, 'display_plugin_setup_page')
-    );
-}
+    public function display_plugin_setup_page()
+    {
+        include_once('partials/security-opt-in-admin-display.php');
+    }
 
- 		/**
- 		* Add settings action link to the plugins page.
- 		*
- 		* @since    1.0.0
- 		*/
- 
-		public function add_action_links( $links ) {
-    	/*
-    	*  Documentation : https://codex.wordpress.org/Plugin_API/Filter_Reference/plugin_action_links_(plugin_file_name)
-    	*/
-   			$settings_link = array(
-    		'<a href="' . admin_url( 'options-general.php?page=' . $this->plugin_name ) . '">' . __('Settings', $this->plugin_name) . '</a>',
-   			);
-   			return array_merge(  $settings_link, $links );
+    public function options_update()
+    {
+        register_setting(Security_Opt_In::PLUGIN_NAME, Security_Opt_In::PLUGIN_NAME, array($this, 'validate'));
+    }
 
-		}
+    public function validate($input)
+    {
+        // All checkboxes inputs
+        $valid = array();
 
-		/**
- 		* Render the settings page for this plugin.
- 		*
- 		* @since    1.0.0
- 		*/
- 
-		public function display_plugin_setup_page() {
-    		include_once( 'partials/security-opt-in-admin-display.php' );
-		}
+        //Validate the input of all different functions
+        $valid['xmlrpc'] = (isset($input['xmlrpc']) && !empty($input['xmlrpc'])) ? 1 : 0;
+        $valid['disableauthorpages'] = (isset($input['disableauthorpages']) && !empty($input['disableauthorpages'])) ? 1 : 0;
+        $valid['removeidentifiers'] = (isset($input['removeidentifiers']) && !empty($input['removeidentifiers'])) ? 1 : 0;
+        $valid['hidewpversion'] = (isset($input['hidewpversion']) && !empty($input['hidewpversion'])) ? 1 : 0;
+        $valid['disablepingback'] = (isset($input['disablepingback']) && !empty($input['disablepingback'])) ? 1 : 0;
+        $valid['disablerestapi'] = (isset($input['disablerestapi']) && !empty($input['disablerestapi'])) ? 1 : 0;
 
-		 public function options_update() {
-    	register_setting($this->plugin_name, $this->plugin_name, array($this, 'validate'));
- }
-		
-		public function validate($input) {
-    	// All checkboxes inputs        
-    	$valid = array();
+        return $valid;
+    }
 
-    	//Validate the input of all different functions
-    	$valid['xmlrpc'] = (isset($input['xmlrpc']) && !empty($input['xmlrpc'])) ? 1 : 0;
-    	$valid['disableauthorpages'] = (isset($input['disableauthorpages']) && !empty($input['disableauthorpages'])) ? 1: 0;
-    	$valid['removeidentifiers'] = (isset($input['removeidentifiers']) && !empty($input['removeidentifiers'])) ? 1: 0;
-    	$valid['hidewpversion'] = (isset($input['hidewpversion']) && !empty($input['hidewpversion'])) ? 1: 0;
-    	$valid['disablepingback'] = (isset($input['disablepingback']) && !empty($input['disablepingback'])) ? 1: 0;
-    	$valid['disablerestapi'] = (isset($input['disablerestapi']) && !empty($input['disablerestapi'])) ? 1: 0;
-    	    
-    	return $valid;
- 		}
-		
 }
